@@ -1,0 +1,6 @@
+(library
+(wrapped false)
+ (name aoc)
+ (public_name aoc)
+ (modules day day1 day2 files)
+)
