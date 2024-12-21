@@ -2,5 +2,6 @@
 (wrapped false)
  (name aoc)
  (public_name aoc)
- (modules day day1 day2 files)
+ (modules day day1 day2 day3 files)
+ (libraries str)
 )

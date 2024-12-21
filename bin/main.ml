@@ -11,6 +11,7 @@ let () =
   let days : (module Day.DAY) list = [
     (module Day1);
     (module Day2);
+    (module Day3);
   ] in 
   List.iter (fun (module D : Day.DAY) ->
     let module Runner = DayRunner(D) in
