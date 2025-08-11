@@ -1,6 +1,6 @@
 (lang dune 3.16)
 
-(name aoc)
+(name aoc2024)
 
 (generate_opam_files true)
 
@@ -16,7 +16,7 @@
 (documentation https://url/to/documentation)
 
 (package
- (name aoc)
+ (name aoc2024)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends ocaml dune)

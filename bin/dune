@@ -2,5 +2,5 @@
  (public_name aoc2024)
  (name main)
  (modules main)
- (libraries aoc)
+ (libraries aoc2024)
  )

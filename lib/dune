@@ -1,7 +1,7 @@
 (library
 (wrapped false)
- (name aoc)
- (public_name aoc)
+ (name aoc2024)
+ (public_name aoc2024)
  (modules day day1 day2 day3 files)
  (libraries str)
 )
