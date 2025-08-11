@@ -89,4 +89,41 @@ let part2 () =
   let reports = List.map(fun nums -> safe_or_unsafe_with_removals nums) numbers in
   let sum = List.fold_left (fun acc r -> acc + (if r = Safe then 1 else 0)) 0 reports in 
   Printf.printf "The result of part 2 is %d\n" sum
+(* Tests for to_evolution function *)
+let%test "to_evolution_increasing_valid" =
+  to_evolution 5 7 = Increasing
+
+let%test "to_evolution_decreasing_valid" =
+  to_evolution 7 5 = Decreasing
+
+let%test "to_evolution_out_of_bounds_large_diff" =
+  to_evolution 1 5 = OutOfBounds
+
+let%test "to_evolution_equal_numbers" =
+  to_evolution 5 5 = OutOfBounds
+
+(* Tests for sublists_with_one_removed function *)
+let%test "sublists_with_one_removed_empty" =
+  sublists_with_one_removed [] = []
+
+let%test "sublists_with_one_removed_single" =
+  sublists_with_one_removed [1] = [[]]
+
+let%test "sublists_with_one_removed_three_elements" =
+  let result = sublists_with_one_removed [1; 2; 3] in
+  result = [[2; 3]; [1; 3]; [1; 2]]
+
+(* Tests for safe_or_unsafe function *)
+let%test "safe_or_unsafe_increasing_sequence" =
+  safe_or_unsafe [1; 3; 6; 7; 9] = Safe
+
+let%test "safe_or_unsafe_decreasing_sequence" =
+  safe_or_unsafe [7; 6; 4; 2; 1] = Safe
+
+let%test "safe_or_unsafe_mixed_sequence" =
+  safe_or_unsafe [1; 3; 2; 4; 5] = Unsafe
+
+let%test "safe_or_unsafe_large_jump" =
+  safe_or_unsafe [1; 2; 7; 8; 9] = Unsafe
+
 let get_name = (fun () -> "Day 2")

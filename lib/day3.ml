@@ -60,4 +60,45 @@ let part2 () =
   let result = helper 0 Do 0 in
   Printf.printf "The result of part 2 is %d\n" result
 
+(* Tests for expr_to_string function *)
+let%test "expr_to_string_do" =
+  expr_to_string (Action Do) = "do"
+
+let%test "expr_to_string_dont" =
+  expr_to_string (Action Dont) = "dont"
+
+let%test "expr_to_string_multiply" =
+  expr_to_string (Multiply (2, 3)) = "multiply"
+
+(* Tests for pattern matching logic *)
+let%expect_test "pattern_matching_mul" =
+  let test_string = "mul(2,3)" in
+  let pattern = Str.regexp {|mul(\([0-9]+\),\([0-9]+\))|} in
+  let _ = Str.search_forward pattern test_string 0 in
+  let x = Str.matched_group 1 test_string |> int_of_string in
+  let y = Str.matched_group 2 test_string |> int_of_string in
+  Printf.printf "%d * %d = %d" x y (x * y);
+  [%expect {| 2 * 3 = 6 |}]
+
+let%expect_test "pattern_matching_actions" =
+  let test_string = "don't()do()" in
+  let pattern = Str.regexp {|mul(\([0-9]+\),\([0-9]+\))\|don't()\|do()|} in
+  let _ = Str.search_forward pattern test_string 0 in
+  let m = Str.matched_group 0 test_string in
+  Printf.printf "Found: %s" m;
+  [%expect {| Found: don't() |}]
+
+(* Test action matching *)
+let%test "action_do_match" =
+  let action = Do in
+  match action with
+  | Do -> true
+  | Dont -> false
+
+let%test "action_dont_match" =
+  let action = Dont in
+  match action with
+  | Do -> false
+  | Dont -> true
+
 let get_name = (fun () -> "Day 3")

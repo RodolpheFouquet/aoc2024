@@ -19,6 +19,8 @@
             ocamlPackages.dune_3
             ocamlPackages.findlib
             ocamlPackages.odoc
+            ocamlPackages.ppx_inline_test
+            ocamlPackages.ppx_expect
           ];
         };
 
@@ -29,6 +31,8 @@
           
           buildInputs = with ocamlPackages; [
             dune_3
+            ppx_inline_test
+            ppx_expect
           ];
 
           meta = {

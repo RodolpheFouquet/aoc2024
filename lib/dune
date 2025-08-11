@@ -4,4 +4,6 @@
  (public_name aoc2024)
  (modules day day1 day2 day3 files)
  (libraries str)
+ (preprocess (pps ppx_inline_test ppx_expect))
+ (inline_tests)
 )

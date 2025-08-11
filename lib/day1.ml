@@ -38,6 +38,39 @@ let compute_value map =
   func
 
 
+(* Tests for get_pairs function *)
+let%test "get_pairs_empty_list" = 
+  get_pairs [] [] [] = ([], [])
+
+let%test "get_pairs_single_line" =
+  get_pairs ["3   4"] [] [] = ([3], [4])
+
+let%test "get_pairs_multiple_lines" =
+  get_pairs ["1   2"; "3   4"] [] [] = ([3; 1], [4; 2])
+
+(* Tests for count_occurrences function *)
+let%test "count_occurrences_empty" =
+  IntMap.is_empty (count_occurrences [])
+
+let%test "count_occurrences_single" =
+  let map = count_occurrences [5] in
+  IntMap.find 5 map = 1
+
+let%test "count_occurrences_duplicates" =
+  let map = count_occurrences [3; 4; 3; 3] in
+  IntMap.find 3 map = 3 && IntMap.find 4 map = 1
+
+(* Tests for compute_value function *)
+let%test "compute_value_found" =
+  let map = IntMap.add 5 3 IntMap.empty in
+  let func = compute_value map in
+  func 0 5 = 15 (* 5 * 3 + 0 *)
+
+let%test "compute_value_not_found" =
+  let map = IntMap.empty in
+  let func = compute_value map in
+  func 10 5 = 10 (* not found, return acc *)
+
 let get_name () = "Day 1"
 
 let part1 () =
