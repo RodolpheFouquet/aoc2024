@@ -27,6 +27,7 @@
             ocamlPackages.odoc
             ocamlPackages.ppx_inline_test
             ocamlPackages.ppx_expect
+            ocamlPackages.ocamlformat
           ];
 
           shellHook = ''
@@ -67,4 +68,3 @@
       }
     );
 }
-
